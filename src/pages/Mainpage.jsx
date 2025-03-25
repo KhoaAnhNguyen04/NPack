@@ -58,7 +58,7 @@ class Mainpage extends Component {
             <div className="global-px">
               <div className="flex flex-col gap-6 w-[75%] lg:w-[50%] text-sm">
                 <h2 className="text-4xl font-bold">
-                  Start Your Day with Coofee and Good Meals
+                  Start Your Day with Coffee and Good Meals
                 </h2>
                 <p>
                   We provide high quality beans, good taste, and healthy meals
