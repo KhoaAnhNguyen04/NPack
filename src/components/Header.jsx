@@ -215,6 +215,16 @@ class Header extends Component {
                   Home
                 </NavLink>
               </li>
+              <li className="list-none" key="Stats">
+                <NavLink
+                  to="/stats"
+                  className={({ isActive }) =>
+                    isActive ? "font-bold text-[#6A4029]" : ""
+                  }
+                >
+                  Statistic
+                </NavLink>
+              </li>
               <li className="list-none" key="Product">
                 <NavLink
                   to="/products"
