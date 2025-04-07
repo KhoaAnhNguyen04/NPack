@@ -3,16 +3,16 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Cart from "./pages/Cart";
-import NotFound from "./pages/Error";
 import Mainpage from "./pages/Mainpage";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/Products/ProductDetail";
 import ScrollToTop from "./utils/scrollToTop";
 import { TokenHandler } from "./utils/wrappers/protectedRoute";
-import AllPromo from "./pages/Promo";
 import Statistic from "./pages/Stats";
-
-// const AllRouter = createBrowserRouter(createRoutesFromElements());
+import Summary from "./pages/Summary";
+import Login from "./pages/Auth/Login";
+import Auth from "./pages/Auth";
+import LoginPage from "./pages/Login";
 
 const Routers = () => {
   return (
@@ -21,6 +21,8 @@ const Routers = () => {
       <Routes>
         <Route path="/" element={<TokenHandler />}>
           <Route path="/stats" element={<Statistic />} />
+          <Route path="/summary" element={<Summary />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route index element={<Mainpage />} />
           <Route path="products/*" element={<Products title="Products" />}>
             <Route path="category/:id" element={""} />

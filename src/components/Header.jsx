@@ -237,12 +237,12 @@ class Header extends Component {
               </li>
               <li className="list-none" key="Cart">
                 <NavLink
-                  to="/cart"
+                  to="/summary"
                   className={({ isActive }) =>
                     isActive ? "font-bold text-[#6A4029]" : ""
                   }
                 >
-                  Your Cart
+                  Summary
                 </NavLink>
               </li>
               <li className="list-none" key="History">
@@ -458,10 +458,10 @@ class Header extends Component {
               </div>
             ) : (
               <div className="hidden lg:flex flex-row gap-3 items-center select-none py-6">
-                <Link to="/auth/login" className="mr-9 font-semibold">
+                <Link to="/login" className="mr-9 font-semibold">
                   Login
                 </Link>
-                <Link to="/auth/register">
+                <Link to="/register">
                   <button className="rounded-[25px] bg-secondary px-10 text-tertiary font-semibold py-2 hover:bg-secondary-200 duration-300">
                     Sign Up
                   </button>

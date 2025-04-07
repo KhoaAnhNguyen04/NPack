@@ -1,6 +1,6 @@
 import React from "react";
 
-function IngredientForm({ ingredients, setIngredients }) {
+function IngredientForm({  ingredients, setIngredients}) {
   const handleChange = (index, field, value) => {
     const updatedIngredients = [...ingredients];
     updatedIngredients[index][field] = value;
