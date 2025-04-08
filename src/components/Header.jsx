@@ -110,7 +110,6 @@ class Header extends Component {
   logoutHandler = () => {
     toast.dismiss();
     this.props.openLogout();
-    
   };
 
   handleClickOutside(event) {
@@ -461,7 +460,7 @@ class Header extends Component {
                 <Link to="/login" className="mr-9 font-semibold">
                   Login
                 </Link>
-                <Link to="/register">
+                <Link to="/signup">
                   <button className="rounded-[25px] bg-secondary px-10 text-tertiary font-semibold py-2 hover:bg-secondary-200 duration-300">
                     Sign Up
                   </button>

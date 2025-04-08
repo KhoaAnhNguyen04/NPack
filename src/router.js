@@ -10,9 +10,8 @@ import ScrollToTop from "./utils/scrollToTop";
 import { TokenHandler } from "./utils/wrappers/protectedRoute";
 import Statistic from "./pages/Stats";
 import Summary from "./pages/Summary";
-import Login from "./pages/Auth/Login";
-import Auth from "./pages/Auth";
 import LoginPage from "./pages/Login";
+import SignUpPage from "./pages/Login/SignUp";
 
 const Routers = () => {
   return (
@@ -23,6 +22,7 @@ const Routers = () => {
           <Route path="/stats" element={<Statistic />} />
           <Route path="/summary" element={<Summary />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
           <Route index element={<Mainpage />} />
           <Route path="products/*" element={<Products title="Products" />}>
             <Route path="category/:id" element={""} />

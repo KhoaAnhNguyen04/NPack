@@ -9,34 +9,42 @@ import axios from "axios";
 
 const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
-function LoginPage(props) {
+function SignUpPage(props) {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleLogin = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setError("");
 
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
+    setLoading(true);
+
     try {
-      const response = await axios.post(`${apiUrl}/login`, {
+      const response = await axios.post(`${apiUrl}/register`, {
         username,
         password,
       });
 
-      localStorage.setItem("token", response.data.token);
+      console.log("Register success:", response.data);
+      toast.success("Account created successfully! Redirecting...");
 
-      toast.success("Login successful! Redirecting...");
-
+      // Delay a little before redirecting
       setTimeout(() => {
         navigate("/");
-      }, 1500);
+      }, 2000);
     } catch (err) {
-      const errorMessage = err.response?.data?.message || "Login failed";
+      const errorMessage =
+        err.response?.data?.message || "Registration failed.";
       setError(errorMessage);
       toast.error(errorMessage);
     } finally {
@@ -49,10 +57,10 @@ function LoginPage(props) {
       <Header />
       <main className="flex flex-col-reverse md:flex-row global-px py-10 justify-center items-center min-h-[60vh]">
         <form
-          onSubmit={handleLogin}
+          onSubmit={handleSignUp}
           className="w-full max-w-md bg-white shadow-md rounded-lg p-8 space-y-4"
         >
-          <h2 className="text-2xl font-bold text-center">Login</h2>
+          <h2 className="text-2xl font-bold text-center">Sign Up</h2>
 
           {error && <div className="text-red-500 text-sm">{error}</div>}
 
@@ -78,12 +86,25 @@ function LoginPage(props) {
             />
           </div>
 
+          <div>
+            <label className="block text-sm font-medium mb-1">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              className="w-full border border-gray-300 rounded px-3 py-2"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </div>
+
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+            className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
             disabled={loading}
           >
-            {loading ? "Logging in..." : "Login"}
+            {loading ? "Signing up..." : "Sign Up"}
           </button>
         </form>
       </main>
@@ -93,4 +114,4 @@ function LoginPage(props) {
   );
 }
 
-export default LoginPage;
+export default SignUpPage;
