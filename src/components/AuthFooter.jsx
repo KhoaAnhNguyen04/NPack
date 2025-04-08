@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import fbLogo from '../assets/icons/facebook.svg';
-import igLogo from '../assets/icons/instagram.svg';
-import twLogo from '../assets/icons/twitter.svg';
-import logo from '../assets/jokopi.svg';
+import fbLogo from "../assets/icons/facebook.svg";
+import igLogo from "../assets/icons/instagram.svg";
+import twLogo from "../assets/icons/twitter.svg";
+import logo from "../assets/jokopi.svg";
 
 const AuthFooter = () => {
   return (
@@ -18,11 +18,11 @@ const AuthFooter = () => {
               <Link to="/">
                 <div className="font-extrabold flex flex-row gap-2">
                   <img src={logo} alt="logo" width="30px" />{" "}
-                  <h1 className="text-xl text-black">jokopi.</h1>
+                  <h1 className="text-xl text-black">NPACK</h1>
                 </div>
               </Link>
               <div className="">
-                jokopi is a store that sells some good meals, and especially
+                NPACK is a store that sells some good meals, and especially
                 coffee. We provide high quality beans
               </div>
               <div className="flex flex-row gap-5">
@@ -48,7 +48,7 @@ const AuthFooter = () => {
                   <img src={twLogo} alt="" width="120%" className="w-16" />
                 </a>
               </div>
-              <div className="copyright">(c) 2023 jokopi</div>
+              <div className="copyright">(c) 2025 NPACK</div>
             </div>
             <nav className="flex flex-row lg:flex-col gap-10 md:flex-1">
               <div className="flex-1 flex flex-col gap-5">

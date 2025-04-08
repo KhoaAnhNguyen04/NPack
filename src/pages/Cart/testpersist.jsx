@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import {
-  useDispatch,
-  useSelector,
-} from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
-import Footer from '../../components/Footer';
-import Header from '../../components/Header';
-import { uinfoAct } from '../../redux/slices/userInfo.slice';
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
+import { uinfoAct } from "../../redux/slices/userInfo.slice";
 
 function Cart() {
   const token = useSelector((state) => state.userInfo);
@@ -18,7 +15,6 @@ function Cart() {
       dispatch(uinfoAct.assignToken(e.target.value));
     }
   };
-  // console.log(jwtDecode(get("jokopi-token")));
   return (
     <>
       <Header />
