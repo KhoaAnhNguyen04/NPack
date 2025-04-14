@@ -25,6 +25,7 @@ function Statistic(props) {
   const [ingredientsList, setIngredientsList] = useState([]);
   const [topIngredients, setTopIngredients] = useState([]);
   const [beverageList, setBeverageList] = useState([]);
+  const [csvFile, setCsvFile] = useState(null); // CSV file state
 
   const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -109,6 +110,38 @@ function Statistic(props) {
     inputOrder();
   };
 
+  const handleCSVChange = (e) => {
+    setCsvFile(e.target.files[0]);
+  };
+
+  const handleCSVUpload = async (e) => {
+    e.preventDefault();
+    if (!csvFile) {
+      toast.error("Please select a CSV file to upload.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", csvFile);
+
+    try {
+      const response = await axios.post(
+        `${apiUrl}/upload/new-orders`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      toast.success("CSV uploaded successfully!");
+      setCsvFile(null);
+    } catch (error) {
+      console.error("Error uploading CSV:", error);
+      toast.error("Failed to upload CSV.");
+    }
+  };
+
   useEffect(() => {
     fetchIngredientList();
     fetchIngredientData();
@@ -164,8 +197,9 @@ function Statistic(props) {
           </div>
         </section>
 
-        {/* New Row: Order Form */}
-        <section className="py-5">
+        {/* New Row: Order Form + CSV Upload */}
+        <section className="py-5 flex flex-col md:flex-row md:space-x-8">
+          {/* Order Form */}
           <form onSubmit={handleOrderSubmit} className="w-full md:w-2/3">
             <h2 className="text-lg font-semibold mb-4">Submit New Order</h2>
             <OrderForm
@@ -179,6 +213,27 @@ function Statistic(props) {
               </button>
             </div>
           </form>
+
+          {/* XLSX Upload */}
+          <div className="w-full md:w-1/3 mt-8 md:mt-0">
+            <h2 className="text-lg font-semibold mb-4">Upload Orders (XLSX)</h2>
+            <form onSubmit={handleCSVUpload} className="space-y-4">
+              <input
+                type="file"
+                accept=".csv"
+                onChange={handleCSVChange}
+                className="block w-full text-sm text-gray-500
+        file:mr-4 file:py-2 file:px-4
+        file:rounded file:border-0
+        file:text-sm file:font-semibold
+        file:bg-blue-50 file:text-blue-700
+        hover:file:bg-blue-100"
+              />
+              <button type="submit" className="btn btn-secondary w-full">
+                Upload XLSX
+              </button>
+            </form>
+          </div>
         </section>
       </main>
       <Footer />
